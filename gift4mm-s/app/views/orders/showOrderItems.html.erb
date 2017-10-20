@@ -1,0 +1,36 @@
+<% if @currentOrder != nil %>
+<h1>View order <%= @currentOrder.id %></h1>
+<br>
+
+<table >
+    
+    <tr>
+        <th> &nbsp; </th>
+        <th> &nbsp;</th>
+        <th> &nbsp;</th>
+        <th> &nbsp; </th>
+        <th> &nbsp; </th>
+    </tr>
+    
+    <% @tmp = @currentOrder.order_items %>
+    <% @tmp.each do |order_item| %>
+      <%= render "order_item_row", order_item: order_item %>
+    <% end %>
+    <br><br>
+    <tr>
+        
+        <th colspan="4">
+            <h4> Total:  &nbsp; &nbsp; </h4>
+        </th>
+        <td>
+            <h4> <%= number_to_currency(@currentOrder.totalprice, :unit => "€") %></h4>
+        </td>
+    </tr>
+    
+</table>
+
+
+<br>
+<%= link_to 'Back', orders_path %>
+
+<% end %>

@@ -1,0 +1,52 @@
+<h1>Your Cart</h1>
+
+
+<% if @cart.empty? %>
+    <br><br>
+    <h4>Your Cart is empty.</h4>
+    <br>
+    <p>
+     <%= link_to 'Continue Shopping', :controller => :items %>
+    </p>
+<% else %>
+
+<%= form_for(:session, url: orders_path) do |f| %>
+<% total = 0 %>
+	
+<table class="cart">
+    
+   <tr>
+        <th> &nbsp; &nbsp; &nbsp;</th>
+        <th> &nbsp; &nbsp; &nbsp;</th>
+        <th> &nbsp; &nbsp; &nbsp;</th>
+        <th> &nbsp; &nbsp; &nbsp;</th>
+        <th> &nbsp; &nbsp; &nbsp;</th>
+    </tr>
+	
+<% @cart.each do | id, quantity | %>
+    <% item = Item.find_by_id(id) %>
+    <tr>
+        <%= render 'cart/cart_row', item: item, quantity: quantity %>
+       
+    </tr>
+   
+    <tr><th colspan="4">&nbsp; &nbsp; &nbsp;</th></tr>
+    <% total += quantity * item.price %>
+<% end %>
+    <% session[:cart_total] = total %>
+    <tr>
+        
+        <th colspan="4">
+            <div class="total">Total:</div>
+        </th>
+        <td>
+            <div class="price"><%= number_to_currency(total, :unit => "€") %></div>
+        </td>
+    </tr>
+</table>
+
+<br><br>
+<p><%= link_to 'Continue Shopping', :controller => :items %> | 
+<%= f.submit "Order" %>
+<% end %>
+<% end %>

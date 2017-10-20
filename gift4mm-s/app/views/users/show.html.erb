@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h1>User profil</h1>
+<br><br>
+<p>
+  <strong>Name:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>E-mail:</strong>
+  <%= current_user.email %>
+</p>
+
+<br>
+
+<p><%= link_to 'Change password', edit_user_path(current_user) %></p>

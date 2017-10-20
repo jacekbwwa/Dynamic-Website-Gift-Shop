@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Catalog</h1>
+
+<br><br>
+
+<table>
+
+<% @items.each do |item| %>
+
+   <tr >
+     <td >
+         <div class="image" style="padding-top:20px;padding-bottom=10px; padding-right:10px;">
+
+         <%= image_tag item.image_url if item.image? %>
+         </div>
+     </td>
+
+     <td>
+        
+         <div class="title" style = "font-weight:bold">
+             <h5> <%= item.title %></h5>
+            
+         </div>
+         <div class="description">
+             <br>
+           <h6> <%= item.description %> </h6>
+         </div>
+         <br>
+         <div class="price">
+          <%= number_to_currency(item.price, :unit =>
+'€') %> &nbsp;&nbsp;
+         </div>
+         <div class="links">
+             <br>
+             <% if session[:login] == 1 %>
+             <%= link_to 'Edit', edit_item_path(item) %> | &nbsp;&nbsp;
+             <%= link_to 'Delete', item, method: 
+:delete,   data: { confirm: 'Are you sure?' } %> &nbsp;&nbsp;
+             <% else %>
+             <a href="/cart/<%= item.id %>">Add to Cart</a> &nbsp;&nbsp;
+             <% end %>
+             &nbsp;&nbsp;
+             <br><br>
+         </div>
+     </td>
+
+   </tr>
+
+
+<% end %>
+</table>
+
+<% if session[:login] == 1 %>
+     <p><%= link_to 'New item', new_item_path %></p> <% end %>

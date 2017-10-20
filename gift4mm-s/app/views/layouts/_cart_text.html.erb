@@ -1,0 +1,4 @@
+
+<% if session[:cart] != nil && session[:cart].size>0 %>
+    <%= "(#{session[:cart].size})" %>
+<% end %>

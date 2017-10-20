@@ -1,0 +1,17 @@
+<h1>My orders</h1>
+<br><br>
+
+
+    <% if current_user.orders.any? %>
+    
+    <% number = 1 %>
+    <% @orders = current_user.orders %>
+    <% @orders.each do |order| %>
+      <%= render "order_row", order: order, number: number %>
+      <% number = number + 1 %>
+    <% end %>
+  
+    
+    <% else %>
+      <h4>No orders yet.</h4>
+    <% end %>
