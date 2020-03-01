@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
        end
      end
 
-   def eit
+   def edit
    end
 
    def show
