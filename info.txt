@@ -1,2 +1,2 @@
 Dynamic Website Gift Shop Based on Ruby on Rails
-gifts4alljb in Heroku
+gifts4alljb on Heroku
